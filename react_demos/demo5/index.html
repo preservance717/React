@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this.props.children</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <div>
+        <div>this.props对象的属性与组件的属性一一对应</div>
+        <div>this.props.children属性表示组件的所有节点，只有当子节点多于一个时，this.props.children才是数组
+        </div>
+    </div>
+    <script type="text/babel">
+        var NotesList = React.createClass({
+            render:function () {
+               return <ol>{
+                   this.props.children.map((child)=>{
+                     return <li>{child}</li>
+                   })
+               }</ol>
+            }
+        })
+
+        ReactDOM.render(
+            <NotesList>
+                <span>AAA</span>
+                <span>BBB</span>
+            </NotesList>,
+            document.getElementById('example')
+        );
+    </script>
+</body>
+</html>
